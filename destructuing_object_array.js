@@ -19,16 +19,18 @@ const address = {
 // console.log(firstCountry)
 
 //객체 리터럴, Object Literal
-function getAddress(country, city, street){
-    const myAddress = { 
-        country : country, //이렇게 쓰는 건데 
-        city, //변수명이랑 같다면
-        street, //줄여 쓸 수 있다.
-        str_num : 111, //이렇게 추가 정의할 수도 있다.
-        postcode : '0920'
-    }
-    console.log(myAddress)
-}
+// function getAddress(country, city, street){
+//     const myAddress = { 
+//         country : country, //이렇게 쓰는 건데 
+//         city, //변수명이랑 같다면
+//         street, //줄여 쓸 수 있다.
+//         str_num : 111, //이렇게 추가 정의할 수도 있다.
+//         postcode : '0920'
+//     }
+//     console.log(myAddress)
+// }
 
-getAddress('Japan', 'Osaka', 'street')
+// getAddress('Japan', 'Osaka', 'street')
+
+
 
