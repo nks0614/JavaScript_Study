@@ -20,11 +20,24 @@
         var a2 = array.slice(1,5) //array에서 1 부터 4까지 잘라서 새로운 배열을 만든다
         console.log(a2)
 
+        array.sort(function(a,b){ //sort
+            if(a.length > b.length){
+                return -1
+            }
+            else if(a.length < b.length){
+                return 1
+            }
+            else{
+                return 0
+            }
+        })
+
         for(var i = 0; i < array.length; i++){
             console.log(array[i])
         }
 
         
+
     </script>
 </body>
 </html>
