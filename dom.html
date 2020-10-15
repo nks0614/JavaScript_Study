@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button{
+            margin: 30px;
+        }
+    </style>
+    <script>
+        function changeColor(color){
+            var div = document.getElementById("colorArea")
+            div.style.backgroundColor = color
+        }
+
+        function colorPush(){
+            var c = document.getElementById("input").value
+            console.log(c)
+            var div = document.getElementById("colorArea")
+            div.style.backgroundColor = c
+        }
+    </script>
+</head>
+<body>
+    <div id="colorArea" style="border: 1px solid #000; width: 300px; height: 200px;">안녕하세요</div>
+     
+    
+    <button onclick="changeColor('#FF0000');">빨강</button>
+    <button onclick="changeColor('#00FF00');">초록</button>
+    <button onclick="changeColor('#0000FF');">파랑</button>
+    <hr>
+    <input id="input">
+    <button onclick="colorPush();">입력</button>
+
+</body>
+</html>
