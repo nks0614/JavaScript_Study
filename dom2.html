@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var text = ""
+        function inputText(){
+            var inputText = document.querySelector("[name='input']").value
+            if(inputText != ""){
+                document.querySelector("[name='input']").value = ""
+                text += inputText + "<br>"
+                var div = document.querySelector("#ground")
+                div.innerHTML = text
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <div id="ground"style="border: 1px solid #ccc; height: 300px; margin-bottom: 10px; overflow : auto;">
+        
+    </div>
+
+    <input type="text" name="input">
+    <button onclick="inputText();">입력</button>
+
+</body>
+</html>
