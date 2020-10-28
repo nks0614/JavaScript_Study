@@ -13,26 +13,53 @@
                 return
             }
             let li = createLiTag(t)
+            
 
             let ulTag = document.querySelector('ul')
             ulTag.appendChild(li)
+        
 
             document.querySelector('#txt_input').value = ""
         }
 
         function createLiTag(value){
             let liTag = document.createElement('li')
-            let textNode = document.createTextNode(value)
 
+            let textNode = document.createTextNode(value)
             liTag.appendChild(textNode)
 
+            let del = createDelTag()
+            del.style.marginLeft= "10px"
+            liTag.appendChild(del)
+
+            del.onclick = function(){
+                liTag.remove()
+            }
+
             return liTag
+        }
+        
+        function createDelTag(){
+            let btTag = document.createElement('button')
+            let textNode = document.createTextNode('삭제')
+
+            btTag.appendChild(textNode)
+
+            return btTag
+        }
+
+        
+
+        function enterTxt(event){
+            if(event.keyCode == 13){
+                appendLine()
+            }
         }
 
     </script>
 </head>
 <body>
-    <input type="text" id="txt_input">
+    <input type="text" id="txt_input" onkeydown="enterTxt(event)">
     <button onclick="appendLine()">입력</button>
 
     <hr>
