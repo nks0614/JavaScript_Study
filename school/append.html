@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        function appendLine(){
+            let t = document.querySelector('#txt_input').value
+
+            if(t == ""){
+                return
+            }
+            let li = createLiTag(t)
+
+            let ulTag = document.querySelector('ul')
+            ulTag.appendChild(li)
+
+            document.querySelector('#txt_input').value = ""
+        }
+
+        function createLiTag(value){
+            let liTag = document.createElement('li')
+            let textNode = document.createTextNode(value)
+
+            liTag.appendChild(textNode)
+
+            return liTag
+        }
+
+    </script>
+</head>
+<body>
+    <input type="text" id="txt_input">
+    <button onclick="appendLine()">입력</button>
+
+    <hr>
+
+    <ul>
+        
+    </ul>
+
+</body>
+</html>

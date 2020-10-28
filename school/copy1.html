@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        function onCopy(){
+            let first = document.querySelector('#original').value
+            document.querySelector('#copied').value = first
+        }
+
+    </script>
+</head>
+<body>
+    
+    <input id="original" type="text" onkeyup="onCopy()">
+    <button onclick="onCopy()">복사</button>
+
+    <hr>
+
+    <input id="copied" type="text">
+
+    
+</body>
+</html>
