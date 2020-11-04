@@ -5,62 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STOPWATCH</title>
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
         .layer {
-            position: absolute;
             text-align: center;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
+            width: 80%;
+            margin: 7% 10% 0 10%;
         }
+
         #time {
-            position: absolute;
-            top: 30%;
-            left: 30%;
-            font-size: 400%;
+            font-size: 600%;
+            padding: 5%;
         }
+
         button{
-            position: absolute;
-            width: max-content;
-            height: max-content;
-            padding-left: 10px;
-            padding-right: 10px;
+            width: 80px;
+            height: 30px;
+            padding: 5px 10px;
+            margin: 10px 20px;
+            border-radius: 5px;
             border: none;
             font-size: 16px;
         }
+
         #lap{
-            position: absolute;
-            top: 55%;
-            left: 31%;
             background: greenyellow;
         }
-        #control{
-            position: absolute;
-            top: 55%;
-            left: 45%;
+
+        #lap:hover{
+            background: rgb(140, 212, 32);
         }
+
+        #control:hover{
+            background: rgb(160, 160, 160);
+        }
+
         #record{
-            position: absolute;
-            overflow: scroll;
             font-size: 120%;
             list-style: none;
-            top: 25%;
-            right: 30%;
+        }
+        ul li{
+            margin-top: 1%;
+        }
+        span{
+            margin: 1%;
+            
+        }
+        hr{
+            border: 3px solid greenyellow;
+            margin-top: 2%;
         }
     </style>
     <script>
-        let controlBtn = true
-        var time
-        var mill = 0
-        var sec = 0
-        var min = 0
+        let isControl = true
+        let time
+        let mill = 0
+        let sec = 0
+        let min = 0
 
         function control(){
-            console.log("control")
-            if(controlBtn){
+            if(isControl){
                 document.querySelector('#control').textContent = "STOP"
-                time = setInterval(function(){
-                    
+                timer()
+                isControl = false
+            }
+            else{
+                document.querySelector('#control').textContent = "START"
+                clearInterval(time)
+                checkRecord()
+                isControl = true
+
+            }
+        }
+
+        function timer(){
+            time = setInterval(function(){
                     mill *= 1
                     sec *= 1
                     min *= 1
@@ -76,46 +98,31 @@
                         sec = 0
                     }
                     
+                    min = twoNum(min)
                     mill = twoNum(mill)
                     sec = twoNum(sec)
                     
                     
-                    document.querySelector('#time').textContent = min + " : "+ sec + " . "+ mill
+                    document.querySelector('#time').textContent = min + " : "+ sec + " : "+ mill
                 }, 10)
-                controlBtn = false
-            }
-            else{
-                document.querySelector('#control').textContent = "START"
-                clearInterval(time)
-                controlBtn = true
-
-            }
         }
 
         function lap(){
-            console.log("lap" + controlBtn)
-
-            if(controlBtn){
-                document.querySelector('#time').textContent = "0 : 00 . 00"
+            if(isControl){
+                document.querySelector('#time').textContent = "00 : 00 : 00"
+                deleteAllLiTag()
+                document.querySelector('#minTime').textContent = "최소 시간 : 측정되지 않음"
+                document.querySelector('#maxTime').textContent = "최대 시간 : 측정되지 않음"
+                document.querySelector('#avgTime').textContent = "평균 시간 : 측정되지 않음"
                 mill = 0
                 sec = 0
                 min = 0
             }
             else{
-                let li = createLiTag(document.querySelector('#time').textContent)
                 let ulTag = document.querySelector('ul')
+                let li = createLiTag(document.querySelector('#time').textContent)
                 ulTag.appendChild(li)
             }
-        }
-
-        function keyControl(event){
-            if(event.keyCode == 83){
-                control()
-            }
-        }
-
-        function twoNum(n) {
-            return (n < 10 ? '0' : '') + n
         }
 
         function createLiTag(value){
@@ -127,17 +134,86 @@
             return liTag
         }
 
+        function deleteAllLiTag(){
+            let ul = document.querySelector('ul')
+            while (ul.firstChild) {
+                ul.removeChild(ul.firstChild)
+            }
+        }
+
+        function checkRecord(){
+            let ul = document.querySelector('ul');
+            let cnt = ul.children.length
+            let sum = 0
+            let mill = 0
+            let sec = 0
+            let min = 0
+
+            if(ul.firstChild != null){
+                document.querySelector('#minTime').textContent = "최소 시간 : "+ul.firstChild.textContent
+                document.querySelector('#maxTime').textContent = "최대 시간 : "+ul.lastChild.textContent
+                
+                
+
+                for(let i = 0; i < cnt; i++){
+                    let numTime = ul.children[i].textContent.split(" : ")
+                    sum += (numTime[2] * 1) + ((numTime[1] * 1) * 100) + ((numTime[0] * 1) * 6000)
+                }
+
+                sum = parseInt(sum/cnt)
+
+                if(sum / 6000 > 0){
+                    min += parseInt(sum / 6000)
+                    sum = sum % 6000
+                }
+                if(sum / 100 > 0){
+                    sec += parseInt(sum / 100)
+                    sum = sum % 100
+                }
+                if(sum > 0){
+                    mill = sum
+                }
+
+                min = twoNum(min)
+                sec = twoNum(sec)
+                mill = twoNum(mill)
+                document.querySelector('#avgTime').textContent = " 평균 시간 : "+min + " : " + sec + " : "+ mill
+            }
+            
+        }
+
+        function twoNum(n) {
+            return (n < 10 ? '0' : '') + n
+        }
+
+        function keyControl(event){
+            if(event.keyCode == 83){ // 'S'
+                control()
+            } else if(event.keyCode == 76){ // 'L'
+                lap()
+            }
+        }
+        
+
     </script>
 </head>
 <body onkeydown="keyControl(event)">
-    <div class="layer" >
-        <h1 id="time">0 : 00 . 00</h1>
+    <div class="layer" id="timerBox">
+        <h1>STOPWATCH</h1>
+        <h1 id="time">00 : 00 : 00</h1>
         <button id="lap" onclick="lap()">LAP</button>
         <button id="control" onclick="control()" >START</button>
-        <ul id="record">
-        </ul>
+        <br>
+        <span id="minTime">최소 시간 : 측정되지 않음</span>
+        <span id="maxTime">최대 시간 : 측정되지 않음</span>
+        <span id="avgTime">평균 시간 : 측정되지 않음</span>
     </div>
-
+    
+    <hr>
+    <div class="layer" style="margin-top: 30px;" id="recordBox">
+        <h3>RECORD</h3>
+        <ul id="record"></ul>
+    </div>
     
 </body>
 </html>
