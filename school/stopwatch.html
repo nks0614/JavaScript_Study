@@ -67,12 +67,12 @@
         let min = 0
 
         function control(){
-            if(isControl){
+            if(isControl){ // 스톱워치 시작
                 document.querySelector('#control').textContent = "STOP"
-                timer()
+                stopwatch()
                 isControl = false
             }
-            else{
+            else{ // 스톱워치 중지
                 document.querySelector('#control').textContent = "START"
                 clearInterval(time)
                 checkRecord()
@@ -81,7 +81,7 @@
             }
         }
 
-        function timer(){
+        function stopwatch(){
             time = setInterval(function(){
                     mill *= 1
                     sec *= 1
@@ -109,20 +109,24 @@
 
         function lap(){
             if(isControl){
-                document.querySelector('#time').textContent = "00 : 00 : 00"
-                deleteAllLiTag()
-                document.querySelector('#minTime').textContent = "최소 시간 : 측정되지 않음"
-                document.querySelector('#maxTime').textContent = "최대 시간 : 측정되지 않음"
-                document.querySelector('#avgTime').textContent = "평균 시간 : 측정되지 않음"
-                mill = 0
-                sec = 0
-                min = 0
+                initializScreen()
             }
             else{
                 let ulTag = document.querySelector('ul')
                 let li = createLiTag(document.querySelector('#time').textContent)
                 ulTag.appendChild(li)
             }
+        }
+
+        function initializScreen(){
+            document.querySelector('#time').textContent = "00 : 00 : 00"
+            document.querySelector('#minTime').textContent = "최소 시간 : 측정되지 않음"
+            document.querySelector('#maxTime').textContent = "최대 시간 : 측정되지 않음"
+            document.querySelector('#avgTime').textContent = "평균 시간 : 측정되지 않음"
+            deleteAllLiTag()
+            mill = 0
+            sec = 0
+            min = 0
         }
 
         function createLiTag(value){
