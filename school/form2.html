@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function checkWord(){
+            var id = document.form1.userId.value
+            var name = document.form1.userName.value
+            var pw = document.form1.userPW.value
+            var pwCheck = document.form1.userPWCheck.value
+
+            const idCheck = /^[A-Za-z0-9+]*$/
+
+            var chk_num = pw.search(/[0-9]/g)
+            var chk_eng = pw.search(/[a-z]/ig)
+
+
+
+            if(id == "" || name == "" || pw == "" || pwCheck == ""){
+                alert("기입사항을 입력해주세요.")
+            }else{
+                if(!idCheck.test(id) || (id.length < 4 || id.length > 10)){
+                    alert("ID가 조건에 맞지 않습니다.")
+                    return
+                }
+                else if((chk_num < 0 || chk_eng < 0) || pw.length < 4){
+                    alert("비밀번호가 조건에 맞지 않습니다.")
+                    return
+                }
+                else if(pw != pwCheck){
+                    alert("비밀번호와 비밀번호 확인이 틀립니다.")
+                    return
+                }
+                alert("회원가입에 성공하셨습니다!")
+                
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="#" method="POST" name="form1">
+        <label>ID</label>
+        <input type="text" name="userId"><br>
+
+        <label>이름</label>
+        <input type="text" name="userName"><br>
+
+        <label>비밀번호</label>
+        <input type="password" name="userPW"><br>
+
+        <label>비밀번호 확인</label>
+        <input type="password" name="userPWCheck"><br>
+
+        <input type="button" name="입력" value="입력" onclick="checkWord()">
+    </form>
+</body>
+</html>

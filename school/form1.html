@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM</title>
+    <script>
+
+        function copyData(){
+            var checked = document.form1.copy.checked
+            
+            if(checked){
+                var name = document.form1.buyName.value
+                var address = document.form1.buyAddress.value
+                var phone = document.form1.buyPhone.value
+                if(name == "" || address == "" || phone == ""){
+                    alert("기입사항을 다 적어주세요")
+                    document.form1.copy.checked = false
+                    return
+                }
+
+                document.form1.receiptorName.value = name
+                document.form1.receiptorAddress.value = address
+                document.form1.receiptorPhone.value = phone
+            }else{
+                document.form1.receiptorName.value = ""
+                document.form1.receiptorAddress.value = ""
+                document.form1.receiptorPhone.value = ""
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <form name="form1" method="POST" action="#">
+        <div>
+            <h4>구매자 정보</h4>
+            <label>성명</label>
+            <input type="text" name="buyName"><br>
+
+            <label>주소</label>
+            <input type="text" name="buyAddress"><br>
+
+            <label>전화번호</label>
+            <input type="text" name="buyPhone"><br>
+        </div>
+
+        <br>
+        
+        <label onclick="copyData()" >
+            <input type="checkbox" name="copy">
+            구매자와 수령자가 동일한가요?
+        </label>
+
+        <div>
+            <h4>수령자 정보</h4>
+            <label>성명</label>
+            <input type="text" name="receiptorName"><br>
+
+            <label>주소</label>
+            <input type="text" name="receiptorAddress"><br>
+            
+            <label>전화번호</label>
+            <input type="text" name="receiptorPhone"><br>
+        </div>
+
+    </form>
+</body>
+</html>
