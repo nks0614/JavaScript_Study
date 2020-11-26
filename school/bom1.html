@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        td, th{
+            padding: 10px;
+            border: black solid 1px;
+        }
+    </style>
+    <script>
+        window.onresize = function(){
+            showTable()
+        }
+
+        function showTable(){
+            var width = window.innerWidth
+            var height = window.innerHeight
+
+            if(width < 460){
+                showOrHide(".year", false)
+            }
+            else{
+                showOrHide(".year", true)
+            }
+
+            if(width < 360){
+                showOrHide(".usef", false)
+            }
+            else{
+                showOrHide(".usef", true)
+            }
+
+        }
+
+        function showOrHide(name, show){
+            var e = document.querySelectorAll(name)
+
+            for(var i in e){
+                e[i].style.display = show ? "block" : "none"
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>차 종류</th>
+                <th>회사</th>
+                <th>가격</th>
+                <th class="usef">용도</th>
+                <th class="year">연도</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>포터</td>
+                <td>현대</td>
+                <td>2000</td>
+                <td class="usef">사업</td>
+                <td class="year">1999년</td>
+            </tr>
+            <tr>
+                <td>포터</td>
+                <td>현대</td>
+                <td>2000</td>
+                <td class="usef">사업</td>
+                <td class="year">1999년</td>
+            </tr>
+            <tr>
+                <td>포터</td>
+                <td>현대</td>
+                <td>2000</td>
+                <td class="usef">사업</td>
+                <td class="year">1999년</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
