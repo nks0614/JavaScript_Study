@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+        #dayBox{
+            width: 100%;
+            text-align: center;
+            padding: 20px 0px;
+            position: fixed;
+            top: 0px;
+            background: white;
+            box-shadow: 0px 5px 10px rgb(247, 247, 247);
+        }
+        h2{
+            display: inline;
+            margin: 0px 15px;
+        }
+
+    </style>
+    <script>
+        const today = new Date()
+        let date = today.getFullYear() + "년 " + (today.getMonth()+1) + "월 " + today.getDate() + "일 "
+
+        function dayLoad(){
+            let dow = checkDow(today)
+            document.querySelector('#dayText').textContent = date + dow
+        }
+
+        function checkDow(day){
+            if(day.getDay() == 0) return "일요일"
+            else if(day.getDay() == 1) return "월요일"
+            else if(day.getDay() == 2) return "화요일"
+            else if(day.getDay() == 3) return "수요일"
+            else if(day.getDay() == 4) return "목요일"
+            else if(day.getDay() == 5) return "금요일"
+            else if(day.getDay() == 6) return "토요일"
+        }
+    </script>
+</head>
+<body onload="dayLoad()">
+    <div id="dayBox"><h2>&lt;</h2><h2 id="dayText"></h2><h2>&gt;</h2></div>
+    <div id="weekBox" style="margin-top: 80px;">일 월 화 수 목 금 토</div>
+</body>
+</html>
