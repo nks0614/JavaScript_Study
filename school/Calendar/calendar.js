@@ -1,8 +1,5 @@
 let date = new Date()
 
-const datesElement = document.getElementById('dates')
-datesElement.addEventListener('click', onClickDate)
-
 let viewYear = date.getFullYear()
 let viewMonth = date.getMonth()
 
@@ -107,3 +104,6 @@ const onClickDate = (event) => {
         }
     }
 }
+
+const datesElement = document.getElementById('dates')
+datesElement.addEventListener('click', onClickDate)
