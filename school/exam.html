@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fffff</title>
+    <script>
+
+        function loading(){
+            diffEqual()
+            console.log(window)
+            console.log(navigator)
+        }
+
+        function diffEqual(){
+            let num = 1
+            let str = "1"
+
+            if(num == str){
+                console.log("==")
+            }
+            if(num === str){
+                console.log("===")
+            }
+        }
+
+        function eventCheck(){
+            console.log("Click Div")
+        }
+
+    </script>
+</head>
+<body onload="loading()">
+    <div style="width: 100px; height: 100px; background-color: black;" onclick="eventCheck()"></div>
+</body>
+</html>
