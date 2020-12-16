@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>fffff</title>
     <script>
+        let a = [1,2,3,4]
 
         function loading(){
             diffEqual()
             console.log(window)
             console.log(navigator)
+
+            let b = a.splice(0,2,3)
+            console.log(a)
+            console.log(b)
         }
 
         function diffEqual(){
