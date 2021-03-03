@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주소록</title>
+    <script>
+        let colorNum = 0;
+
+        const addPhoneNumber = () => {
+            let name = document.querySelector('#txt_input').value
+            let phone = document.querySelector('#num_input').value
+
+            if(name == "" || phone == ""){
+                alert("빈칸 없이 입력하세요")
+                return
+            }
+
+            let value = name + " : " + phone
+
+            let liTag = document.createElement('li')
+
+            let textNode = document.createTextNode(value)
+            liTag.appendChild(textNode)
+
+            let ulTag = document.querySelector('ul')
+            ulTag.appendChild(liTag)
+        
+
+            document.querySelector('#txt_input').value = ""
+            document.querySelector('#num_input').value = ""
+
+        }
+
+        const changeBackground = () => {
+            let color = ["#fff", "#f00", "#0f0"]
+
+            let body = document.querySelector('body')
+            body.style.backgroundColor = color[colorNum%3]
+            colorNum++
+        }
+
+        const resetNumber = () => {
+            let ulTag = document.querySelector('ul')
+            ulTag.innerHTML = ""
+        }
+    </script>
+</head>
+<body id="body">
+    <h3>이름</h3>
+    <input type="text" id="txt_input">
+    <h3>전화번호</h3>
+    <input type="text" id="num_input">
+    <br>
+    <button onclick="addPhoneNumber()">입력</button>
+    <button onclick="changeBackground()">배경화면 변경</button>
+    <button onclick="resetNumber()">리셋</button>
+
+    <hr>
+
+    <ul>
+        
+    </ul>
+</body>
+</html>
